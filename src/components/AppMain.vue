@@ -1,6 +1,6 @@
 <script >
 import { store } from '../store';
-
+import AppCard from './AppCard.vue';
 
 export default{
   name:  'AppMain',
@@ -10,21 +10,10 @@ export default{
     };
   },
   components:{
-    
+    AppCard
   },
   methods:{
-    getFlag(lang){
-      if(lang == 'en'){
-        lang = 'uk';
-      }
-      else if(lang == 'pt'){
-        lang = 'po';
-      }
-
-      const flag = `https://www.worldometers.info//img/flags/small/tn_${lang}-flag.gif`;
-
-      return flag;
-    }
+    
   },
 };
 </script>
@@ -35,40 +24,18 @@ export default{
     <h2>
       Film
     </h2>
-    <div v-for="movie in store.movies">
-      <h3>
-        {{ movie.title }}
-      </h3>
-      <h4>
-        {{ movie.original_title }}
-      </h4>
-      <img :src="getFlag(movie.original_language)">
-      <p>
-        {{ movie.original_language }}
-      </p>
-      <p>
-        {{ movie.vote_average }}
-      </p>
-    </div>
+    <AppCard 
+      v-for="movie in store.movies" 
+      :element="movie"
+      />
+    
     <h2>
       Serie TV
     </h2>
-
-    <div v-for="singleSeries in store.series">
-      <h3>
-        {{ singleSeries.name }}
-      </h3>
-      <h4>
-        {{ singleSeries.original_name }}
-      </h4>
-      <img :src="getFlag(singleSeries.original_language)">
-      <p>
-        {{ singleSeries.original_language }}
-      </p>
-      <p>
-        {{ singleSeries.vote_average }}
-      </p>
-    </div>
+    <AppCard 
+      v-for="singleSeries in store.series" 
+      :element="singleSeries"
+      />
   </main>
 
 </template>
