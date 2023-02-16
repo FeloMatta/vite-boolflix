@@ -24,10 +24,13 @@ export default{
     <h2>
       Film
     </h2>
-    <AppCard 
-      v-for="movie in store.movies" 
-      :element="movie"
+    <div class="cards-container">
+      <AppCard 
+        v-for="movie in store.movies" 
+        :element="movie"
       />
+    </div>
+    
     
     <h2>
       Serie TV
@@ -40,6 +43,13 @@ export default{
 
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+  .cards-container{
+    display: flex;
+    flex-wrap: wrap;
 
+    > *{
+      width: 20%;
+    }
+  }
 </style>
